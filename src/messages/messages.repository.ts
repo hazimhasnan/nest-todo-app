@@ -1,6 +1,16 @@
+import { Injectable } from "@nestjs/common";
 import { readFile, writeFile } from "fs/promises";
 
-export class MessageRepository {
+/* 
+    to inject the repository to the service:
+        1) make the class injectable using @Injectable()
+        2) then add it to the module 'providers'
+
+    if this can be used in other module, then add it to the module 'exports'
+*/
+
+@Injectable()
+export class MessagesRepository {
     async findOne(id: string): Promise<string>{
         const messages = await this.parseFile('message.json')
 
